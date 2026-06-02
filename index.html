@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Etrazia · Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0c10;
+    color: #f0ede6;
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  }
+  .container { max-width: 480px; }
+  .logo { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .logo span { color: #e8892a; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: #5c5a55;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(232,137,42,0.12);
+    border: 1px solid rgba(232,137,42,0.3);
+    color: #e8892a;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 6px 14px;
+    border-radius: 99px;
+    margin-bottom: 28px;
+  }
+  h1 { font-size: 42px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; }
+  h1 span { color: #e8892a; }
+  p { font-size: 15px; color: #a09d96; line-height: 1.7; margin-bottom: 40px; font-family: 'DM Sans', sans-serif; }
+  .cta {
+    display: inline-block;
+    background: #e8892a;
+    color: #0a0c10;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .cta:hover { opacity: 0.88; }
+  .footer {
+    margin-top: 64px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #2a2a2a;
+    letter-spacing: 0.08em;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    background: #e8892a;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">e·<span>trazia</span></div>
+    <div class="tag">// demo environment</div>
+    <div class="badge"><span class="dot"></span>En preparación</div>
+    <h1>La demo estará<br><span>lista pronto.</span></h1>
+    <p>Estamos preparando un entorno de demostración con data ficticia para que puedas explorar Suite Etrazia antes de contratar.</p>
+    <a href="https://etraziapp.com" class="cta">Ver planes y precios →</a>
+    <div class="footer">ETRAZIA SAC · demo.etraziapp.com</div>
+  </div>
+</body>
+</html>
