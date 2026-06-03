@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#8B1A3A">
+<meta name="theme-color" content="#B87333">
 <title>🧊 Frosty</title>
 <script>
-const md={name:"Frosty Helados",short_name:"Frosty Helados",start_url:".",display:"standalone",background_color:"#0B1120",theme_color:"#B87333",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%238B1A3A'/><text x='96' y='130' font-size='100' text-anchor='middle'>💎</text></svg>",sizes:"192x192",type:"image/svg+xml"}]};
+const md={name:"Frosty Helados",short_name:"Frosty Helados",start_url:".",display:"standalone",background_color:"#0B1120",theme_color:"#B87333",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%230B1120'/><text x='96' y='130' font-size='100' text-anchor='middle'>🧊</text></svg>",sizes:"192x192",type:"image/svg+xml"}]};
 const b=new Blob([JSON.stringify(md)],{type:'application/json'});
 const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(b);document.head.appendChild(l);
 </script>
@@ -17,22 +17,22 @@ const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectU
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --P:#8B1A3A;--PL:#F8ECF0;--PM:#C4506E;--PD:#5C0F26;
+  --P:#B87333;--PL:rgba(184,115,51,0.12);--PM:#D97706;--PD:#92581F;
   --G:#C9A84C;--GL:#FDF7ED;--GD:#8B6914;
   --R:#D4547A;--RL:#FCF0F4;
-  --bg:#FAFAF9;--surf:#FFFFFF;--surf2:#F5F2EF;--surf3:#EDE8E3;
+  --bg:#0B1120;--surf:#111827;--surf2:#1A2235;--surf3:#243044;
   --bdr:#E8E2DA;--bdr2:#D4CBB8;
   --tx:#1A0A0F;--tx2:#6B4A55;--tx3:#A88090;
   --grn:#2A6049;--grn-bg:#EDF5F0;
   --red:#B03030;--red-bg:#FEF0F0;
   --amb:#8A6010;--amb-bg:#FDF6E3;
   --blu:#1A4A7A;--blu-bg:#EAF1FA;
-  --fd:'Cormorant Garamond',serif;
-  --fb:'DM Sans',sans-serif;
+  --fd:'Montserrat',sans-serif;
+  --fb:'Inter',sans-serif;
   --r:8px;--rs:6px;--rl:12px;
   --sb:env(safe-area-inset-bottom,0px);
   --st:env(safe-area-inset-top,0px);
@@ -445,7 +445,7 @@ body.role-admin .admin-only-block{display:flex !important}
 
 <!-- LOADING SCREEN — visible mientras Firebase verifica sesión -->
 <div id="loading-screen" style="position:fixed;inset:0;background:var(--bg);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;font-weight:600;color:var(--P);letter-spacing:.04em">🧊 Frosty</div>
+  <div style="font-family:'Montserrat',sans-serif;font-size:28px;font-style:italic;font-weight:600;color:var(--P);letter-spacing:.04em">🧊 Frosty</div>
   <div style="width:32px;height:32px;border:3px solid var(--PL);border-top-color:var(--P);border-radius:50%;animation:spin .8s linear infinite"></div>
   <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
 </div>
@@ -705,17 +705,17 @@ body.role-admin .admin-only-block{display:flex !important}
   <span class="mh"></span>
   <div class="mt">Nuevo Producto</div>
   <div class="fg">
-    <div class="fr"><label>ID Producto</label><input id="np-id" placeholder="JOY-001"></div>
+    <div class="fr"><label>ID Producto</label><input id="np-id" placeholder="FRO-001"></div>
     <div class="fr"><label>Categoría</label>
       <select id="np-cat">
         <option value="">— Seleccionar —</option>
-        <option>Anillos</option><option>Collares</option><option>Aretes</option>
-        <option>Pulseras</option><option>Dijes</option><option>Conjunto</option><option>Otro</option>
+        <option>Raspadillas</option><option>Cremoladas</option><option>Bubble Tea</option>
+        <option>Helados</option><option>Bocaditos</option><option>Bebidas</option><option>Otro</option>
       </select>
     </div>
   </div>
-  <div class="fr"><label>Nombre del producto</label><input id="np-nm" placeholder="Ej: Anillo Solitario Brillante"></div>
-  <div class="fr"><label>Descripción detallada</label><textarea id="np-desc" placeholder="Materiales, detalles, ocasión de uso..."></textarea></div>
+  <div class="fr"><label>Nombre del producto</label><input id="np-nm" placeholder="Ej: Bubble Tea de Taro"></div>
+  <div class="fr"><label>Descripción detallada</label><textarea id="np-desc" placeholder="Sabor, presentación, tamaño..."></textarea></div>
 <div class="fr">
   <label>Fotos del producto (hasta 3)</label>
   <div class="foto-slots">
@@ -749,12 +749,12 @@ body.role-admin .admin-only-block{display:flex !important}
     <div class="fr"><label>Presentación</label>
       <select id="np-mat" onchange="updQlt('np')">
         <option value="">— Seleccionar —</option>
-        <option>Oro</option><option>Plata</option>
+        <option>Vaso</option><option>Copa</option><option>Caja</option><option>Bolsa</option>
       </select>
     </div>
-    <div class="fr"><label id="np-qlt-lbl">Quilates / Pureza</label>
+    <div class="fr"><label id="np-qlt-lbl">Tamaño</label>
       <select id="np-qlt">
-        <option value="">— Primero elige material —</option>
+        <option value="">— Seleccionar tamaño —</option>
       </select>
     </div>
   </div>
@@ -782,8 +782,8 @@ body.role-admin .admin-only-block{display:flex !important}
     <div class="fr"><label>ID</label><input id="ep-id" readonly style="background:var(--surf3);color:var(--tx3)"></div>
     <div class="fr"><label>Categoría</label>
       <select id="ep-cat">
-        <option>Anillos</option><option>Collares</option><option>Aretes</option>
-        <option>Pulseras</option><option>Dijes</option><option>Conjunto</option><option>Otro</option>
+        <option>Raspadillas</option><option>Cremoladas</option><option>Bubble Tea</option>
+        <option>Helados</option><option>Bocaditos</option><option>Bebidas</option><option>Otro</option>
       </select>
     </div>
   </div>
@@ -822,11 +822,11 @@ body.role-admin .admin-only-block{display:flex !important}
     <div class="fr"><label>Presentación</label>
       <select id="ep-mat" onchange="updQlt('ep')">
         <option value="">— Seleccionar —</option>
-        <option>Oro</option><option>Plata</option>
+        <option>Vaso</option><option>Copa</option><option>Caja</option><option>Bolsa</option>
       </select>
     </div>
-    <div class="fr"><label id="ep-qlt-lbl">Quilates / Pureza</label>
-      <select id="ep-qlt"><option value="">— Primero elige material —</option></select>
+    <div class="fr"><label id="ep-qlt-lbl">Tamaño</label>
+      <select id="ep-qlt"><option value="">— Seleccionar tamaño —</option></select>
     </div>
   </div>
   <div class="fg">
@@ -1041,9 +1041,9 @@ function updQlt(pfx){
   const mat=document.getElementById(pfx+'-mat').value;
   const qltSel=document.getElementById(pfx+'-qlt');
   const lbl=document.getElementById(pfx+'-qlt-lbl');
-  if(mat==='Oro'){lbl.textContent='Quilates';qltSel.innerHTML='<option value="">— Seleccionar —</option><option>18K</option><option>24K</option>';}
-  else if(mat==='Plata'){lbl.textContent='Pureza';qltSel.innerHTML='<option value="">— Seleccionar —</option><option>925</option><option>950</option>';}
-  else{lbl.textContent='Quilates / Pureza';qltSel.innerHTML='<option value="">— Primero elige material —</option>';}
+  if(mat==='Oro'){lbl.textContent='Tamaño';qltSel.innerHTML='<option value="">— Seleccionar —</option><option>Chico</option><option>Mediano</option><option>Grande</option>';
+  else if(mat==='Plata'){
+  else{lbl.textContent='Tamaño';qltSel.innerHTML='<option value="">— Seleccionar —</option><option>Chico</option><option>Mediano</option><option>Grande</option>';}
 }
 function setMatQlt(pfx,mat,qlt){
   const ms=document.getElementById(pfx+'-mat');
@@ -1096,7 +1096,7 @@ function renderList(){
       return `<div class="prod-row" onclick="openDet('${p.id}')">
         <div class="prod-info"><div class="prod-name">${p.name}</div><div class="prod-meta">${p.id}</div></div>
         <div class="prod-cat">${p.cat}</div>
-        <div class="prod-mat">${p.material||'—'} ${p.quilates||''}</div>
+        <div class="prod-mat">${p.material||'—'} ${p.tamano||''}</div>
         <div class="prod-cost">${fmtM(p.cost)}</div>
         <div class="prod-price">${fmtM(p.price)}</div>
         <div style="display:flex;align-items:center;gap:6px"><span class="stk ${cls}">${s}u.</span><span style="font-size:11px;color:${mg>=45?'var(--grn)':mg>=25?'var(--amb)':'var(--red)'};font-weight:500">${mg}%</span></div>
@@ -1110,7 +1110,7 @@ function renderList(){
     }
     return `<div class="prod-row">
       <div class="prod-thumb" onclick="openDet('${p.id}')">${thumb}</div>
-      <div class="prod-info" onclick="openDet('${p.id}')"><div class="prod-name">${p.name}</div><div class="prod-meta">${p.id} · ${p.cat} · ${p.material||'—'} ${p.quilates||''}</div></div>
+      <div class="prod-info" onclick="openDet('${p.id}')"><div class="prod-name">${p.name}</div><div class="prod-meta">${p.id} · ${p.cat} · ${p.material||'—'} ${p.tamano||''}</div></div>
       <div class="prod-right">
         <div class="prod-price" onclick="openDet('${p.id}')">${fmtM(p.price)}</div>
         ${stkLbl}
@@ -1267,7 +1267,7 @@ function openDet(id){
       <div class="det-mi"><div class="det-ml">Stock Actual</div><div class="det-mv" style="color:var(--${cls==='ok'?'grn':cls==='wn'?'amb':'red'})">${s} u.</div></div>
       <div class="det-mi"><div class="det-ml">Stock Mínimo</div><div class="det-mv">${p.minStock} u.</div></div>
       <div class="det-mi"><div class="det-ml">Presentación</div><div class="det-mv">${p.material||'—'}</div></div>
-      <div class="det-mi"><div class="det-ml">${p.material==='Oro'?'Quilates':'Pureza'}</div><div class="det-mv">${p.quilates||'—'}</div></div>
+      <div class="det-mi"><div class="det-ml">Tamaño</div><div class="det-mv">${p.tamano||'—'}</div></div>
     </div>
     ${p.desc?`<div class="det-desc">${p.desc}</div>`:''}
     <div class="det-btns">
@@ -1341,7 +1341,7 @@ function openProd(){
   ['np-cost','np-prc'].forEach(f=>document.getElementById(f).value='');
   document.getElementById('np-stk').value=0;document.getElementById('np-min').value=2;
   document.getElementById('np-cat').value='';document.getElementById('np-mat').value='';
-  document.getElementById('np-qlt').innerHTML='<option value="">— Primero elige material —</option>';
+  document.getElementById('np-qlt').innerHTML='<option value="">— Seleccionar tamaño —</option>';
   [['np-img-pv','np-foto1-btn','📷 Principal'],
  ['np-img2-pv','np-foto2-btn','📷 Adicional'],
  ['np-img3-pv','np-foto3-btn','📷 Adicional']].forEach(([pvId,btnId,lbl])=>{
@@ -1361,7 +1361,7 @@ function openEdit(id){
   document.getElementById('ep-prc').value=p.price||0;
   document.getElementById('ep-min').value=p.minStock||2;
   const ec=document.getElementById('ep-cat');for(let i=0;i<ec.options.length;i++)if(ec.options[i].value===p.cat){ec.selectedIndex=i;break;}
-  setMatQlt('ep',p.material||'',p.quilates||'');
+  setMatQlt('ep',p.material||'',p.tamano||'');
 [['ep-img-pv','ep-foto1-btn','img'],
  ['ep-img2-pv','ep-foto2-btn','img2'],
  ['ep-img3-pv','ep-foto3-btn','img3']].forEach(([pvId,btnId,field])=>{
@@ -1467,7 +1467,7 @@ function saveProd(){
   const p={id,name:nm,cat:document.getElementById('np-cat').value||'Otro',
     desc:document.getElementById('np-desc').value.trim(),
     material:document.getElementById('np-mat').value||'—',
-    quilates:document.getElementById('np-qlt').value||'—',
+    tamano:document.getElementById('np-qlt').value||'—',
     cost:c,price:parseFloat(document.getElementById('np-prc').value)||0,
     minStock:parseInt(document.getElementById('np-min').value)||2,
     img:getImg('np-img-pv'),
@@ -1484,7 +1484,7 @@ function saveEdit(){
   p.cat=document.getElementById('ep-cat').value;
   p.desc=document.getElementById('ep-desc').value.trim();
   p.material=document.getElementById('ep-mat').value||'—';
-  p.quilates=document.getElementById('ep-qlt').value||'—';
+  p.tamano=document.getElementById('ep-qlt').value||'—';
   p.cost=parseFloat(document.getElementById('ep-cost').value)||0;
   p.price=parseFloat(document.getElementById('ep-prc').value)||0;
   p.minStock=parseInt(document.getElementById('ep-min').value)||2;
@@ -1600,8 +1600,8 @@ function exportClients(){
 
 function exportXLS(){
   if(!D.products.length){alert('No hay productos en el catálogo.');return;}
-  const rows=[['ID','Nombre','Categoría','Material','Quilates/Pureza','Descripción','Costo (S/)','Precio Venta (S/)','Margen (%)','Stock Actual','Stock Mínimo']];
-  D.products.forEach(p=>{const s=stk(p.id);const mg=margin(p);rows.push([p.id,p.name,p.cat,p.material||'—',p.quilates||'—',p.desc||'',p.cost,p.price,mg+'%',s,p.minStock]);});
+  const rows=[['ID','Nombre','Categoría','Presentación','Tamaño','Descripción','Costo (S/)','Precio Venta (S/)','Margen (%)','Stock Actual','Stock Mínimo']];
+  D.products.forEach(p=>{const s=stk(p.id);const mg=margin(p);rows.push([p.id,p.name,p.cat,p.material||'—',p.tamano||'—',p.desc||'',p.cost,p.price,mg+'%',s,p.minStock]);});
   const wb=XLSX.utils.book_new();
   const ws=XLSX.utils.aoa_to_sheet(rows);
   ws['!cols']=[{wch:10},{wch:32},{wch:14},{wch:10},{wch:14},{wch:36},{wch:12},{wch:14},{wch:10},{wch:12},{wch:12}];
@@ -1659,11 +1659,11 @@ async function exportPDF(){
 
   // Frases por categoría
   const FRASES={
-    'Anillos':'Para las que eligen llevar en sus manos lo que sienten en el alma.',
-    'Collares':'Porque lo que cuelga cerca del corazón, siempre tiene un significado.',
-    'Aretes':'El detalle que enmarca tu rostro y cuenta tu historia.',
-    'Pulseras':'Cada pieza es un recuerdo que decides llevar contigo.',
-    'Dijes':'Un símbolo que llevas contigo en cada momento.',
+    'Raspadillas':'Refrescante, colorida y llena de sabor. La clásica que nunca falla.','
+    'Cremoladas':'Cremosa, fría y con el sabor que te transporta a otro lugar.','
+    'Bubble Tea':'Bolitas que explotan de sabor. La experiencia más divertida en un vaso.','
+    'Helados':'Clásicos de siempre, en el sabor que más te gusta.','
+    'Bocaditos':'El complemento perfecto para acompañar tu bebida favorita.','
     'Conjunto':'La elegancia completa, pensada para ti.',
     'default':'Para las que eligen adornarse desde quienes son.'
   };
@@ -1713,7 +1713,7 @@ async function exportPDF(){
     return `
       <div class="photo-zone">
         <div class="photo-inner">${fotosHTML}</div>
-        <div class="mat-badge">${(p.material+(p.quilates&&p.quilates!=='—'?' '+p.quilates:'')).toUpperCase()}</div>
+        <div class="mat-badge">${(p.material+(p.tamano&&p.tamano!=='—'?' '+p.tamano:'')).toUpperCase()}</div>
       </div>`;
   }
 
@@ -1737,8 +1737,8 @@ async function exportPDF(){
             <div class="pname">${p.name}</div>
             <div class="sep-line"></div>
             <div class="specs">
-              <div class="spec"><div class="slbl">MATERIAL</div><div class="sval">${p.material||'—'}</div></div>
-              <div class="spec"><div class="slbl">${p.material==='Oro'?'QUILATES':'PUREZA'}</div><div class="sval">${p.quilates||'—'}</div></div>
+              <div class="spec"><div class="slbl">PRESENTACIÓN</div><div class="sval">${p.material||'—'}</div></div>
+              <div class="spec"><div class="slbl">${p.material==='Oro'?'QUILATES':'PUREZA'}</div><div class="sval">${p.tamano||'—'}</div></div>
             </div>
             <div class="spec full"><div class="slbl">CATEGORÍA</div><div class="sval">${p.cat||'—'}</div></div>
             ${p.desc?`<div class="desc">"${p.desc}"</div>`:''}
@@ -1804,14 +1804,14 @@ async function exportPDF(){
 
   // CSS completo optimizado para impresión
   const css=`
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --wine:#8B1A3A;--wine-dk:#5C0F26;--rose:#FADADD;--rose-md:#F4BCC4;
+      --wine:#B87333;--wine-dk:#D97706;--rose:#FADADD;--rose-md:#F4BCC4;
       --gold:#C9A84C;--gray:#C4A0A8;--gray-lt:#EADDE2;--dark:#1A0A0F;
       --cream:#FAF8F5;--surf:#FEF4F6;
     }
-    body{background:#E8E0DC;font-family:'DM Sans',sans-serif}
+    body{background:#E8E0DC;font-family:'Inter',sans-serif}
 
     /* PÁGINA */
     .page{
@@ -1829,7 +1829,7 @@ async function exportPDF(){
     .portada-footer{
       height:14mm;width:100%;
       background:var(--wine);display:flex;align-items:center;justify-content:center;
-      font-family:'DM Sans',sans-serif;font-size:9pt;letter-spacing:4px;color:var(--rose);
+      font-family:'Inter',sans-serif;font-size:9pt;letter-spacing:4px;color:var(--rose);
     }
 
     /* SPINE */
@@ -1842,13 +1842,13 @@ async function exportPDF(){
       border-bottom:1.5pt solid var(--wine);
     }
     .brand{
-      font-family:'Cormorant Garamond',serif;font-size:18pt;font-style:italic;
+      font-family:'Montserrat',sans-serif;font-size:18pt;font-style:italic;
       font-weight:600;color:var(--wine);letter-spacing:.04em;line-height:1;
     }
     .tagline{font-size:5.5pt;letter-spacing:2.5px;color:var(--gray);margin-top:1.5mm;text-transform:uppercase}
     .hdr-right{text-align:right}
     .cat-name{
-      font-family:'Cormorant Garamond',serif;font-size:14pt;font-style:italic;
+      font-family:'Montserrat',sans-serif;font-size:14pt;font-style:italic;
       color:var(--wine-dk);letter-spacing:.03em;
     }
     .cat-count{font-size:6pt;letter-spacing:1.5px;color:var(--gray);margin-top:1mm;text-transform:uppercase}
@@ -1921,7 +1921,7 @@ async function exportPDF(){
 
     .pid{font-size:8pt;letter-spacing:2px;color:var(--gray);text-transform:uppercase}
     .pname{
-      font-family:'Cormorant Garamond',serif;font-size:14pt;font-style:italic;
+      font-family:'Montserrat',sans-serif;font-size:14pt;font-style:italic;
       font-weight:600;color:var(--dark);line-height:1.25;
     }
     .sep-line{height:.5pt;background:linear-gradient(90deg,var(--rose-md),var(--gray-lt),transparent)}
@@ -1929,11 +1929,11 @@ async function exportPDF(){
     .spec.full{grid-column:1/-1}
     .slbl{font-size:12pt;letter-spacing:1px;color:var(--gray);text-transform:uppercase;margin-bottom:.5mm;font-style:normal;font-weight:400}
     .sval{font-size:10pt;font-weight:500;font-style:italic;color:var(--dark)}
-    .desc{font-family:'Cormorant Garamond',serif;font-size:8.5pt;font-style:italic;color:#A89090;line-height:1.5}
+    .desc{font-family:'Montserrat',sans-serif;font-size:8.5pt;font-style:italic;color:#A89090;line-height:1.5}
 
     /* FRASE DE MARCA */
     .frase-wrap{border-top:.5pt solid #F0E8EA;padding-top:2mm}
-    .frase{font-family:'Cormorant Garamond',serif;font-size:7.5pt;font-style:italic;color:#C4B0B8;letter-spacing:.03em;line-height:1.5;text-align:center}
+    .frase{font-family:'Montserrat',sans-serif;font-size:7.5pt;font-style:italic;color:#C4B0B8;letter-spacing:.03em;line-height:1.5;text-align:center}
     .frase-orn{display:flex;align-items:center;justify-content:center;gap:3pt;margin-top:2pt}
     .orn-line{display:inline-block;width:14pt;height:.5pt;background:var(--gold);opacity:.55}
     .orn-dot{display:inline-block;width:3pt;height:3pt;border-radius:50%;background:var(--gold);opacity:.65}
@@ -1945,7 +1945,7 @@ async function exportPDF(){
     }
     .price-lbl{font-size:6.5pt;letter-spacing:2px;color:var(--wine);text-transform:uppercase;font-weight:400}
     .price-val{
-      font-family:'Cormorant Garamond',serif;font-size:18pt;
+      font-family:'Montserrat',sans-serif;font-size:18pt;
       font-weight:600;color:var(--wine-dk);letter-spacing:.02em;
     }
 
@@ -2158,14 +2158,14 @@ async function exportPayPDF(){
   const fecha=new Date().toLocaleDateString('es-PE',{year:'numeric',month:'long',day:'numeric'});
 
   const css=`
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --wine:#8B1A3A;--wine-dk:#5C0F26;--rose:#FADADD;--rose-md:#F4BCC4;
+      --wine:#B87333;--wine-dk:#D97706;--rose:#FADADD;--rose-md:#F4BCC4;
       --gold:#C9A84C;--gray:#C4A0A8;--gray-lt:#EADDE2;--dark:#1A0A0F;
       --cream:#FAF8F5;--surf:#FEF4F6;
     }
-    body{background:#E8E0DC;font-family:'DM Sans',sans-serif}
+    body{background:#E8E0DC;font-family:'Inter',sans-serif}
     .page{
       width:210mm;min-height:297mm;background:var(--cream);
       margin:0 auto;position:relative;overflow:hidden;
@@ -2180,13 +2180,13 @@ async function exportPayPDF(){
       display:flex;justify-content:space-between;align-items:flex-end;
     }
     .brand{
-      font-family:'Cormorant Garamond',serif;font-size:28pt;font-style:italic;
+      font-family:'Montserrat',sans-serif;font-size:28pt;font-style:italic;
       font-weight:600;color:var(--rose);letter-spacing:.06em;line-height:1;
     }
     .tagline{font-size:6pt;letter-spacing:2.5px;color:rgba(253,218,221,.5);margin-top:2mm;text-transform:uppercase}
     .hdr-right{text-align:right}
     .doc-title{
-      font-family:'Cormorant Garamond',serif;font-size:16pt;font-style:italic;
+      font-family:'Montserrat',sans-serif;font-size:16pt;font-style:italic;
       color:rgba(253,218,221,.85);letter-spacing:.04em;
     }
     .doc-fecha{font-size:7pt;color:rgba(253,218,221,.45);margin-top:1.5mm;letter-spacing:1px}
@@ -2195,7 +2195,7 @@ async function exportPayPDF(){
     /* Subtítulo */
     .subtitle-wrap{padding:5mm 8mm 4mm 10mm;border-bottom:.5pt solid var(--gray-lt)}
     .subtitle{
-      font-family:'Cormorant Garamond',serif;font-size:13pt;font-style:italic;
+      font-family:'Montserrat',sans-serif;font-size:13pt;font-style:italic;
       color:var(--wine);letter-spacing:.04em;
     }
     .subtitle-note{font-size:7pt;color:var(--gray);margin-top:1.5mm;letter-spacing:.5px}
@@ -2215,7 +2215,7 @@ async function exportPayPDF(){
       background:var(--surf);
     }
     .pay-bank-name{
-      font-family:'Cormorant Garamond',serif;font-size:12pt;font-weight:600;
+      font-family:'Montserrat',sans-serif;font-size:12pt;font-weight:600;
       color:var(--wine-dk);letter-spacing:.02em;
     }
     .pay-bank-type{font-size:6.5pt;color:var(--gray);letter-spacing:.5px;margin-top:.5mm}
@@ -3070,8 +3070,8 @@ window.addEventListener('load',()=>{
   </div>
   <div class="fr" id="pr-cat-row" style="display:none"><label>Categoría</label>
     <select id="pr-cat">
-      <option>Anillos</option><option>Collares</option><option>Aretes</option>
-      <option>Pulseras</option><option>Dijes</option><option>Conjunto</option><option>Otro</option>
+      <option>Raspadillas</option><option>Cremoladas</option><option>Bubble Tea</option>
+      <option>Helados</option><option>Bocaditos</option><option>Bebidas</option><option>Otro</option>
     </select>
   </div>
   <div style="background:var(--grn-bg);border-radius:var(--rs);padding:10px 14px;font-size:13px;color:var(--grn);margin-top:4px" id="pr-preview"></div>
