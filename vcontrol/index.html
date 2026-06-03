@@ -21,16 +21,21 @@ const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectU
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
+  /* ── Etrazia brand tokens ── */
   --P:#B87333;--PL:rgba(184,115,51,0.12);--PM:#D97706;--PD:#92581F;
-  --G:#C9A84C;--GL:#FDF7ED;--GD:#8B6914;
-  --R:#D4547A;--RL:#FCF0F4;
-  --bg:#0B1120;--surf:#111827;--surf2:#1A2235;--surf3:#243044;
-  --bdr:#E8E2DA;--bdr2:#D4CBB8;
-  --tx:#1A0A0F;--tx2:#6B4A55;--tx3:#A88090;
-  --grn:#2A6049;--grn-bg:#EDF5F0;
-  --red:#B03030;--red-bg:#FEF0F0;
-  --amb:#8A6010;--amb-bg:#FDF6E3;
-  --blu:#1A4A7A;--blu-bg:#EAF1FA;
+  --G:#D97706;--GL:rgba(217,119,6,0.10);--GD:#B45309;
+  --R:#F0594A;--RL:rgba(240,89,74,0.10);
+  /* backgrounds */
+  --bg:#0B1120;--surf:#111827;--surf2:#1A2235;--surf3:#1F2D45;
+  /* borders */
+  --bdr:rgba(184,115,51,0.15);--bdr2:rgba(184,115,51,0.25);
+  /* text — legibles sobre fondo oscuro */
+  --tx:#F8FAFC;--tx2:#94A3B8;--tx3:#64748B;
+  /* estados */
+  --grn:#3ECF70;--grn-bg:rgba(62,207,112,0.10);
+  --red:#F0594A;--red-bg:rgba(240,89,74,0.10);
+  --amb:#D97706;--amb-bg:rgba(217,119,6,0.10);
+  --blu:#4A9EFF;--blu-bg:rgba(74,158,255,0.10);
   --fd:'Montserrat',sans-serif;
   --fb:'Inter',sans-serif;
   --r:8px;--rs:6px;--rl:12px;
@@ -47,7 +52,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--fb)
 @media(max-width:899px){.topbar-nav{display:none}}
 .tnav{padding:5px 12px;border-radius:var(--rs);font-size:13px;color:var(--tx2);cursor:pointer;transition:all .12s;border:1px solid transparent;display:flex;align-items:center;gap:4px;font-family:var(--fb)}
 .tnav:hover{background:var(--surf2)}
-.tnav.active{background:var(--PL);color:var(--P);font-weight:500;border-color:var(--R)}
+.tnav.active{background:var(--PL);color:var(--P);font-weight:600;border-color:var(--P)}
 .tnav .nbadge{background:var(--P);color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;font-weight:600}
 .tr{margin-left:auto;display:flex;align-items:center;gap:6px}
 .sync{width:7px;height:7px;border-radius:50%;background:var(--grn);flex-shrink:0}
@@ -439,7 +444,7 @@ body.role-admin .admin-only-block{display:flex !important}
     <div style="text-align:center;margin-top:14px">
       <button onclick="doForgotPassword()" style="background:none;border:none;font-family:var(--fb);font-size:12px;color:var(--P);cursor:pointer;text-decoration:underline">¿Olvidaste tu contraseña?</button>
     </div>
-    <div class="login-footer">Frosty Helados © 2026 — Acceso restringido</div>
+    <div class="login-footer">Frosty Helados © 2026 — Acceso restringido · <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.06em;color:var(--P)">powered by ETRAZIA</span></div>
   </div>
 </div>
 
@@ -453,7 +458,10 @@ body.role-admin .admin-only-block{display:flex !important}
 <div class="app" style="display:none" id="app-container">
 <div id="offline-bar">Sin conexión — los cambios se sincronizarán al reconectar</div>
 <div class="topbar">
-  <div class="logo" onclick="showPage('catalogo')"><span class="logo-gem">🧊</span>Frosty</div>
+  <div style="display:flex;flex-direction:column;justify-content:center;cursor:pointer;gap:1px" onclick="showPage('catalogo')">
+    <div class="logo"><span class="logo-gem">🧊</span>Frosty Helados</div>
+    <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--P);opacity:0.7;margin-left:23px;text-transform:uppercase">powered by Etrazia</div>
+  </div>
   <nav class="topbar-nav">
     <div class="tnav active" id="tn-catalogo" onclick="showPage('catalogo')">Catálogo</div>
     <div class="tnav" id="tn-movimientos" onclick="showPage('movimientos')">Movimientos <span class="nbadge" id="nb-mov">0</span></div>
@@ -481,8 +489,8 @@ body.role-admin .admin-only-block{display:flex !important}
     <div class="user-badge" id="user-badge" onclick="toggleUserMenu(event)" style="display:none">
       <div class="user-avatar" id="user-avatar">?</div>
       <div>
-        <div class="user-name" id="user-name-label">Usuario</div>
-        <div class="user-role" id="user-role-label">—</div>
+        <div class="user-name" id="user-name-label" style="color:var(--tx);font-weight:600">Usuario</div>
+        <div class="user-role" id="user-role-label" style="color:var(--P);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em">—</div>
       </div>
       <div class="user-menu" id="user-menu">
         <button class="user-menu-item admin-only" onclick="openUserMgmt();toggleUserMenu()" id="btn-users">👥 Gestión de usuarios</button>
