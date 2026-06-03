@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frosty Helados · EtraziApp</title>
+<title>Frosty Helados · EtraziApp — Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -11,119 +11,73 @@
 :root{
   --bg:#0B1120;--navy:#111827;--navy2:#1A2235;--navy3:#243044;
   --copper:#B87333;--amber:#D97706;--ice:#F8FAFC;--gr:#94A3B8;--gr2:#4B5563;--gr3:#374151;
-  --green:#22C55E;--green-bg:rgba(34,197,94,0.1);
-  --red:#EF4444;--red-bg:rgba(239,68,68,0.1);
-  --border:rgba(184,115,51,0.1);--border2:rgba(184,115,51,0.18);
+  --border:rgba(184,115,51,0.1);--border2:rgba(184,115,51,0.2);
 }
-html,body{height:100%;overflow:hidden}
-body{background:var(--bg);color:var(--ice);font-family:'Inter',sans-serif;font-size:14px}
-h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
-button{font-family:'Inter',sans-serif;cursor:pointer;border:none;background:none;color:inherit}
-input,select{font-family:'Inter',sans-serif;font-size:13px;color:var(--ice);background:var(--navy2);border:1px solid var(--border2);border-radius:6px;padding:8px 12px;outline:none;transition:border .2s;width:100%}
-input:focus,select:focus{border-color:var(--copper)}
-select option{background:var(--navy2)}
-a{color:var(--copper);text-decoration:none}
+html,body{min-height:100vh;background:var(--bg);color:var(--ice);font-family:'Inter',sans-serif}
+h1,h2,h3{font-family:'Montserrat',sans-serif}
 
-/* ── LOGIN ── */
+/* LOGIN */
 #login-screen{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;padding:24px}
 #login-screen.hidden{display:none}
 .login-box{background:var(--navy);border:1px solid var(--border2);border-radius:16px;padding:40px;width:100%;max-width:400px;text-align:center}
-.login-logo-wrap{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px}
-.login-biz{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:var(--ice);margin-bottom:4px}
-.login-biz span{color:var(--amber)}
-.login-sub{font-size:11px;color:var(--gr);margin-bottom:32px;letter-spacing:.05em}
-.login-fields{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;text-align:left}
+.login-fields{display:flex;flex-direction:column;gap:12px;margin:24px 0;text-align:left}
 .login-fields label{font-size:11px;color:var(--gr);margin-bottom:4px;display:block;font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+input{font-family:'Inter',sans-serif;font-size:13px;color:var(--ice);background:var(--navy2);border:1px solid var(--border2);border-radius:6px;padding:8px 12px;outline:none;transition:border .2s;width:100%}
+input:focus{border-color:var(--copper)}
 .btn-login{width:100%;padding:13px;background:var(--copper);border:none;border-radius:8px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s}
 .btn-login:hover{background:var(--amber)}
-.login-err{font-size:12px;color:var(--red);margin-top:12px;display:none}
-.login-powered{margin-top:28px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:10px;color:var(--gr2)}
-.login-powered span{font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;letter-spacing:.08em;color:var(--gr)}
+.login-err{font-size:12px;color:#EF4444;margin-top:12px;display:none}
 
-/* ── LAYOUT ── */
-#app{display:flex;flex-direction:column;height:100vh;display:none}
+/* APP */
+#app{display:none;flex-direction:column;min-height:100vh}
 #app.show{display:flex}
 
 /* TOPBAR */
-.topbar{height:52px;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;flex-shrink:0;z-index:20}
-.topbar-biz{display:flex;align-items:center;gap:8px}
-.topbar-biz .biz-icon{font-size:20px}
-.topbar-biz .biz-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:var(--ice)}
-.topbar-biz .biz-name span{color:var(--amber)}
-.topbar-nav{display:flex;gap:2px;margin-left:16px;overflow-x:auto}
-.tnav{padding:5px 14px;border-radius:6px;font-size:13px;color:var(--gr);cursor:pointer;transition:all .15s;border:1px solid transparent;white-space:nowrap;font-weight:500}
-.tnav:hover{background:var(--navy2)}
-.tnav.active{background:rgba(184,115,51,0.12);color:var(--copper);border-color:rgba(184,115,51,0.2)}
-.topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.topbar{height:56px;background:var(--navy);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:12px;flex-shrink:0;position:sticky;top:0;z-index:20}
+.topbar-logo{display:flex;align-items:center;gap:8px}
+.topbar-biz{font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;color:var(--ice)}
+.topbar-biz span{color:var(--amber)}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
 .topbar-powered{display:flex;align-items:center;gap:5px;padding-left:12px;border-left:1px solid var(--border);font-size:10px;color:var(--gr2)}
 .topbar-powered b{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:.08em;color:var(--gr)}
-.user-btn{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:6px;background:var(--navy2);border:1px solid var(--border);font-size:12px;color:var(--gr);cursor:pointer}
-.signout-btn{padding:5px 12px;border-radius:6px;background:transparent;border:1px solid var(--border2);font-size:12px;color:var(--gr);cursor:pointer;transition:all .2s}
-.signout-btn:hover{border-color:var(--red);color:var(--red)}
+.demo-badge{padding:4px 10px;border-radius:99px;background:rgba(217,119,6,0.12);border:1px solid rgba(217,119,6,0.25);color:var(--amber);font-size:10px;font-weight:600;letter-spacing:.08em}
+.signout-btn{padding:6px 14px;border-radius:6px;background:transparent;border:1px solid var(--border2);font-size:12px;color:var(--gr);cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.signout-btn:hover{border-color:#EF4444;color:#EF4444}
 
 /* CONTENT */
-.content{flex:1;overflow-y:auto;padding:28px}
-.page{display:none}
-.page.on{display:block}
+.content{flex:1;padding:40px 28px;max-width:960px;margin:0 auto;width:100%}
 
-/* STATS ROW */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
-.stat-card{background:var(--navy);border:1px solid var(--border);border-radius:12px;padding:20px}
-.stat-label{font-size:11px;color:var(--gr);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-weight:600}
-.stat-val{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:800;color:var(--ice)}
-.stat-sub{font-size:11px;color:var(--gr2);margin-top:4px}
-.stat-card.copper .stat-val{color:var(--copper)}
-.stat-card.amber .stat-val{color:var(--amber)}
-.stat-card.green .stat-val{color:var(--green)}
+/* HERO */
+.hero{margin-bottom:40px}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--copper);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--copper)}
+.hero-title{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:800;margin-bottom:8px}
+.hero-title span{color:var(--amber)}
+.hero-sub{font-size:14px;color:var(--gr);line-height:1.6}
 
-/* TABLE */
-.tbl-wrap{background:var(--navy);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.tbl-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
-.tbl-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px}
-table{width:100%;border-collapse:collapse}
-thead th{text-align:left;padding:10px 16px;font-size:11px;font-weight:600;color:var(--gr);text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--border)}
-tbody td{padding:12px 16px;border-bottom:1px solid rgba(184,115,51,0.06);font-size:13px}
-tbody tr:last-child td{border-bottom:none}
-tbody tr:hover td{background:rgba(184,115,51,0.03)}
-.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:500}
-.badge.green{background:var(--green-bg);color:var(--green)}
-.badge.red{background:var(--red-bg);color:var(--red)}
-.badge.amber{background:rgba(217,119,6,0.12);color:var(--amber)}
-.badge.blue{background:rgba(59,130,246,0.12);color:#60A5FA}
+/* APPS GRID */
+.apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.app-card{background:var(--navy);border:1px solid var(--border);border-radius:14px;padding:28px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;text-decoration:none;display:block}
+.app-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--copper),var(--amber));transform:scaleX(0);transition:transform .25s;transform-origin:left}
+.app-card:hover{border-color:rgba(184,115,51,0.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.app-card:hover::before{transform:scaleX(1)}
+.app-card.locked{opacity:.45;cursor:not-allowed;pointer-events:none}
+.app-icon{font-size:32px;margin-bottom:16px}
+.app-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:var(--ice);margin-bottom:6px}
+.app-desc{font-size:12px;color:var(--gr);line-height:1.6;margin-bottom:16px}
+.app-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px}
+.app-status.active{background:rgba(34,197,94,0.1);color:#22C55E;border:1px solid rgba(34,197,94,0.2)}
+.app-status.locked{background:rgba(148,163,184,0.08);color:var(--gr);border:1px solid var(--border)}
+.status-dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+.app-arrow{position:absolute;bottom:24px;right:24px;font-size:18px;color:var(--copper);opacity:0;transition:opacity .2s,transform .2s}
+.app-card:hover .app-arrow{opacity:1;transform:translateX(4px)}
 
-/* SECTION TITLE */
-.section-title{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px}
-.section-sub{font-size:13px;color:var(--gr);margin-bottom:24px}
+/* FOOTER */
+.portal-footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:11px;color:var(--gr2)}
+.footer-copy span{color:rgba(184,115,51,.5)}
 
-/* BTN */
-.btn{padding:8px 18px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;font-family:'Montserrat',sans-serif;letter-spacing:.04em}
-.btn-pri{background:var(--copper);border:none;color:#fff}.btn-pri:hover{background:var(--amber)}
-.btn-sec{background:transparent;border:1px solid var(--border2);color:var(--gr)}.btn-sec:hover{border-color:var(--copper);color:var(--ice)}
-
-/* GRID 2 */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
-
-/* CRM CARD */
-.crm-card{background:var(--navy);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:center;gap:16px}
-.crm-avatar{width:44px;height:44px;border-radius:50%;background:rgba(184,115,51,0.15);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:var(--copper);flex-shrink:0}
-.crm-info .crm-name{font-weight:600;font-size:13px;color:var(--ice)}
-.crm-info .crm-detail{font-size:11px;color:var(--gr);margin-top:2px}
-.crm-seg{margin-left:auto}
-
-/* FINANZAS */
-.fin-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(184,115,51,0.06)}
-.fin-row:last-child{border-bottom:none}
-.fin-label{font-size:13px;color:var(--gr)}
-.fin-val{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px}
-.fin-val.pos{color:var(--green)}
-.fin-val.neg{color:var(--red)}
-.fin-val.neu{color:var(--copper)}
-
-@media(max-width:768px){
-  .stats-row{grid-template-columns:1fr 1fr}
-  .topbar-nav{display:none}
-  .grid2{grid-template-columns:1fr}
-}
+@media(max-width:600px){.content{padding:24px 16px}.topbar{padding:0 16px}}
 </style>
 </head>
 <body>
@@ -131,249 +85,102 @@ tbody tr:hover td{background:rgba(184,115,51,0.03)}
 <!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
-    <div class="login-logo-wrap">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px">
       <svg width="32" height="32" viewBox="0 0 44 44" fill="none">
         <path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#lg1)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#plg1)" stroke-width="5" fill="none" stroke-linecap="round"/>
         <rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/>
-        <defs><linearGradient id="lg1" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs>
+        <defs><linearGradient id="plg1" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs>
       </svg>
-      <div>
+      <div style="text-align:left">
         <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;letter-spacing:.06em;color:#F8FAFC">ETRAZIA<span style="color:#D97706;font-weight:400">app</span></div>
         <div style="font-size:8px;letter-spacing:.18em;color:#94A3B8;text-transform:uppercase">powered by Etrazia</div>
       </div>
     </div>
-    <div class="login-biz" style="margin-top:20px">🧊 <span>Frosty</span></div>
-    <div class="login-sub">Helados · Bubble Tea · Cremoladas</div>
+    <div style="font-size:32px;margin-bottom:4px">🧊</div>
+    <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;margin-bottom:4px">Frosty <span style="color:var(--amber)">Helados</span></div>
+    <div style="font-size:12px;color:var(--gr);margin-bottom:28px">Entorno de demostración · EtraziApp</div>
     <div class="login-fields">
-      <div>
-        <label>Correo</label>
-        <input type="email" id="l-email" placeholder="correo@etrazia.com">
-      </div>
-      <div>
-        <label>Contraseña</label>
-        <input type="password" id="l-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
-      </div>
+      <div><label>Correo</label><input type="email" id="l-email" placeholder="correo@etrazia.com"></div>
+      <div><label>Contraseña</label><input type="password" id="l-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
     </div>
     <button class="btn-login" onclick="doLogin()">Ingresar →</button>
     <div class="login-err" id="l-err">Correo o contraseña incorrectos</div>
-    <div class="login-powered">
-      <svg width="12" height="12" viewBox="0 0 44 44" fill="none"><path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#lg2)" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/><defs><linearGradient id="lg2" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs></svg>
-      powered by <span>ETRAZIA</span>
+    <div style="margin-top:24px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;color:var(--gr2)">
+      <svg width="11" height="11" viewBox="0 0 44 44" fill="none"><path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#plg2)" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/><defs><linearGradient id="plg2" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs></svg>
+      powered by <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:.08em;color:var(--gr)">ETRAZIA</span>
     </div>
   </div>
 </div>
 
 <!-- APP -->
 <div id="app">
-
-  <!-- TOPBAR -->
   <div class="topbar">
-    <div class="topbar-biz">
-      <span class="biz-icon">🧊</span>
-      <span class="biz-name"><span>Frosty</span> Helados</span>
+    <div class="topbar-logo">
+      <svg width="28" height="28" viewBox="0 0 44 44" fill="none">
+        <path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#plg3)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/>
+        <defs><linearGradient id="plg3" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs>
+      </svg>
+      <span class="topbar-biz">🧊 <span>Frosty</span> Helados</span>
     </div>
-    <nav class="topbar-nav">
-      <div class="tnav active" onclick="showPage('catalogo',this)">Catálogo</div>
-      <div class="tnav" onclick="showPage('ventas',this)">Ventas</div>
-      <div class="tnav" onclick="showPage('inventario',this)">Inventario</div>
-      <div class="tnav" onclick="showPage('clientes',this)">Clientes</div>
-      <div class="tnav" onclick="showPage('finanzas',this)">Finanzas</div>
-      <div class="tnav" onclick="showPage('dashboard',this)">Dashboard</div>
-    </nav>
     <div class="topbar-right">
+      <span class="demo-badge">⚡ DEMO</span>
       <div class="topbar-powered">
-        <svg width="12" height="12" viewBox="0 0 44 44" fill="none"><path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#lg3)" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/><defs><linearGradient id="lg3" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs></svg>
+        <svg width="11" height="11" viewBox="0 0 44 44" fill="none"><path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#plg4)" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/><defs><linearGradient id="plg4" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs></svg>
         powered by <b>ETRAZIA</b>
       </div>
       <button class="signout-btn" onclick="doLogout()">Salir</button>
     </div>
   </div>
 
-  <!-- CONTENT -->
   <div class="content">
+    <div class="hero">
+      <div class="hero-eyebrow">Portal de aplicaciones</div>
+      <h1 class="hero-title">Bienvenido, <span>Frosty Helados</span></h1>
+      <p class="hero-sub">Selecciona la aplicación que deseas explorar. Este es un entorno de demostración con data ficticia.</p>
+    </div>
 
-    <!-- CATÁLOGO -->
-    <div class="page on" id="p-catalogo">
-      <div class="section-title">Catálogo</div>
-      <div class="section-sub">Productos de Frosty Helados · 12 productos activos</div>
-      <div class="stats-row">
-        <div class="stat-card"><div class="stat-label">Productos</div><div class="stat-val">12</div><div class="stat-sub">4 categorías</div></div>
-        <div class="stat-card copper"><div class="stat-label">Valor inventario</div><div class="stat-val">S/ 847</div><div class="stat-sub">a precio costo</div></div>
-        <div class="stat-card amber"><div class="stat-label">Precio prom.</div><div class="stat-val">S/ 12</div><div class="stat-sub">por producto</div></div>
-        <div class="stat-card"><div class="stat-label">Stock bajo</div><div class="stat-val" style="color:var(--red)">2</div><div class="stat-sub">requieren reposición</div></div>
+    <div class="apps-grid">
+      <!-- Vcontrol -->
+      <a class="app-card" onclick="openApp('vcontrol')">
+        <div class="app-icon">🏪</div>
+        <div class="app-name">Vcontrol</div>
+        <div class="app-desc">Gestiona ventas, inventario, clientes y finanzas de tu negocio desde un solo lugar.</div>
+        <div class="app-status active"><span class="status-dot"></span>Activo</div>
+        <div class="app-arrow">→</div>
+      </a>
+      <!-- Vcontent -->
+      <a class="app-card" onclick="openApp('vcontent')">
+        <div class="app-icon">✍️</div>
+        <div class="app-name">Vcontent Personal</div>
+        <div class="app-desc">Planifica y publica contenido para LinkedIn e Instagram con ayuda de inteligencia artificial.</div>
+        <div class="app-status active"><span class="status-dot"></span>Activo</div>
+        <div class="app-arrow">→</div>
+      </a>
+      <!-- Vcontent Business — bloqueado -->
+      <div class="app-card locked">
+        <div class="app-icon">📱</div>
+        <div class="app-name">Vcontent Business</div>
+        <div class="app-desc">Instagram y TikTok para tu negocio, conectado con tu inventario.</div>
+        <div class="app-status locked"><span class="status-dot"></span>No contratado</div>
       </div>
-      <div class="tbl-wrap">
-        <div class="tbl-header">
-          <span class="tbl-title">Productos</span>
-          <button class="btn btn-pri">+ Producto</button>
-        </div>
-        <table>
-          <thead><tr><th>Código</th><th>Producto</th><th>Categoría</th><th>Costo</th><th>Precio</th><th>Stock</th><th>Margen</th></tr></thead>
-          <tbody>
-            <tr><td>FRO-001</td><td>Raspadilla de Fresa</td><td>Raspadillas</td><td>S/ 1.50</td><td>S/ 5.00</td><td><span class="badge green">18 u.</span></td><td>70%</td></tr>
-            <tr><td>FRO-002</td><td>Raspadilla de Maracuyá</td><td>Raspadillas</td><td>S/ 1.50</td><td>S/ 5.00</td><td><span class="badge green">12 u.</span></td><td>70%</td></tr>
-            <tr><td>FRO-003</td><td>Cremolada de Lúcuma</td><td>Cremoladas</td><td>S/ 3.00</td><td>S/ 9.00</td><td><span class="badge green">20 u.</span></td><td>67%</td></tr>
-            <tr><td>FRO-004</td><td>Cremolada de Coco</td><td>Cremoladas</td><td>S/ 3.00</td><td>S/ 9.00</td><td><span class="badge amber">3 u.</span></td><td>67%</td></tr>
-            <tr><td>FRO-005</td><td>Bubble Tea Taro</td><td>Bubble Tea</td><td>S/ 5.00</td><td>S/ 14.00</td><td><span class="badge green">15 u.</span></td><td>64%</td></tr>
-            <tr><td>FRO-006</td><td>Bubble Tea Matcha</td><td>Bubble Tea</td><td>S/ 5.50</td><td>S/ 15.00</td><td><span class="badge green">10 u.</span></td><td>63%</td></tr>
-            <tr><td>FRO-007</td><td>Bubble Tea Fresa</td><td>Bubble Tea</td><td>S/ 5.00</td><td>S/ 14.00</td><td><span class="badge red">2 u.</span></td><td>64%</td></tr>
-            <tr><td>FRO-008</td><td>Bocadito de Brownie</td><td>Bocaditos</td><td>S/ 2.00</td><td>S/ 6.00</td><td><span class="badge green">30 u.</span></td><td>67%</td></tr>
-            <tr><td>FRO-009</td><td>Bocadito de Oreo</td><td>Bocaditos</td><td>S/ 2.00</td><td>S/ 6.00</td><td><span class="badge green">25 u.</span></td><td>67%</td></tr>
-            <tr><td>FRO-010</td><td>Helado de Vainilla (bola)</td><td>Helados</td><td>S/ 1.80</td><td>S/ 5.00</td><td><span class="badge green">40 u.</span></td><td>64%</td></tr>
-            <tr><td>FRO-011</td><td>Helado de Chocolate (bola)</td><td>Helados</td><td>S/ 1.80</td><td>S/ 5.00</td><td><span class="badge amber">4 u.</span></td><td>64%</td></tr>
-            <tr><td>FRO-012</td><td>Sundae de Caramelo</td><td>Helados</td><td>S/ 4.00</td><td>S/ 12.00</td><td><span class="badge green">8 u.</span></td><td>67%</td></tr>
-          </tbody>
-        </table>
+      <!-- Vfacturación — bloqueado -->
+      <div class="app-card locked">
+        <div class="app-icon">🧾</div>
+        <div class="app-name">Vfacturación</div>
+        <div class="app-desc">Emite boletas y facturas electrónicas de manera simple y rápida.</div>
+        <div class="app-status locked"><span class="status-dot"></span>No contratado</div>
       </div>
     </div>
 
-    <!-- VENTAS -->
-    <div class="page" id="p-ventas">
-      <div class="section-title">Ventas</div>
-      <div class="section-sub">Registro de ventas del mes · Junio 2026</div>
-      <div class="stats-row">
-        <div class="stat-card green"><div class="stat-label">Ventas del mes</div><div class="stat-val">S/ 1,284</div><div class="stat-sub">128 transacciones</div></div>
-        <div class="stat-card copper"><div class="stat-label">Ticket promedio</div><div class="stat-val">S/ 10</div><div class="stat-sub">por venta</div></div>
-        <div class="stat-card"><div class="stat-label">Hoy</div><div class="stat-val">S/ 87</div><div class="stat-sub">9 ventas</div></div>
-        <div class="stat-card"><div class="stat-label">Mejor día</div><div class="stat-val">Sáb</div><div class="stat-sub">S/ 230 promedio</div></div>
-      </div>
-      <div class="tbl-wrap">
-        <div class="tbl-header">
-          <span class="tbl-title">Últimas ventas</span>
-          <button class="btn btn-pri">+ Registrar venta</button>
-        </div>
-        <table>
-          <thead><tr><th>#</th><th>Fecha</th><th>Cliente</th><th>Productos</th><th>Total</th><th>Pago</th><th>Estado</th></tr></thead>
-          <tbody>
-            <tr><td>V-128</td><td>Hoy 18:42</td><td>María Quispe</td><td>Bubble Tea Taro x1, Bocadito x2</td><td>S/ 26</td><td>Yape</td><td><span class="badge green">Pagado</span></td></tr>
-            <tr><td>V-127</td><td>Hoy 17:15</td><td>Carlos Ruiz</td><td>Cremolada Lúcuma x2</td><td>S/ 18</td><td>Efectivo</td><td><span class="badge green">Pagado</span></td></tr>
-            <tr><td>V-126</td><td>Hoy 16:30</td><td>Ana Torres</td><td>Raspadilla Fresa x1, Helado Vainilla x1</td><td>S/ 10</td><td>Plin</td><td><span class="badge green">Pagado</span></td></tr>
-            <tr><td>V-125</td><td>Hoy 15:00</td><td>Luis Mamani</td><td>Bubble Tea Matcha x1</td><td>S/ 15</td><td>Yape</td><td><span class="badge green">Pagado</span></td></tr>
-            <tr><td>V-124</td><td>Hoy 13:20</td><td>Rosa Flores</td><td>Sundae Caramelo x1, Bocadito Oreo x1</td><td>S/ 18</td><td>Efectivo</td><td><span class="badge green">Pagado</span></td></tr>
-            <tr><td>V-123</td><td>Ayer 19:00</td><td>Pedro Salas</td><td>Bubble Tea Fresa x2</td><td>S/ 28</td><td>Yape</td><td><span class="badge green">Pagado</span></td></tr>
-            <tr><td>V-122</td><td>Ayer 18:10</td><td>Lucía Vega</td><td>Cremolada Coco x1, Raspadilla x1</td><td>S/ 14</td><td>BCP</td><td><span class="badge green">Pagado</span></td></tr>
-            <tr><td>V-121</td><td>Ayer 16:45</td><td>Jorge Díaz</td><td>Helado Chocolate x3</td><td>S/ 15</td><td>Efectivo</td><td><span class="badge red">Anulado</span></td></tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="portal-footer">
+      <div class="footer-copy">© 2026 <span>ETRAZIA</span> SAC · Entorno demo — data ficticia</div>
+      <div style="font-size:11px;color:var(--gr2)">demo.etraziapp.com</div>
     </div>
-
-    <!-- INVENTARIO -->
-    <div class="page" id="p-inventario">
-      <div class="section-title">Inventario</div>
-      <div class="section-sub">Entradas y ajustes de stock · Frosty Helados</div>
-      <div class="stats-row">
-        <div class="stat-card"><div class="stat-label">Total unidades</div><div class="stat-val">187</div><div class="stat-sub">en stock</div></div>
-        <div class="stat-card copper"><div class="stat-label">Valor total</div><div class="stat-val">S/ 847</div><div class="stat-sub">a precio costo</div></div>
-        <div class="stat-card"><div class="stat-label">Entradas mes</div><div class="stat-val">64</div><div class="stat-sub">unidades ingresadas</div></div>
-        <div class="stat-card"><div class="stat-label">Alertas</div><div class="stat-val" style="color:var(--red)">2</div><div class="stat-sub">stock bajo</div></td></tr>
-      </div>
-      <div class="tbl-wrap">
-        <div class="tbl-header">
-          <span class="tbl-title">Movimientos de inventario</span>
-          <button class="btn btn-pri">+ Entrada</button>
-        </div>
-        <table>
-          <thead><tr><th>Fecha</th><th>Producto</th><th>Tipo</th><th>Cantidad</th><th>Stock anterior</th><th>Stock actual</th><th>Nota</th></tr></thead>
-          <tbody>
-            <tr><td>02/06/26</td><td>Bubble Tea Fresa</td><td><span class="badge amber">Ajuste</span></td><td>+5</td><td>0</td><td>5</td><td>Reposición urgente</td></tr>
-            <tr><td>01/06/26</td><td>Cremolada de Coco</td><td><span class="badge blue">Entrada</span></td><td>+10</td><td>0</td><td>10</td><td>Compra proveedor</td></tr>
-            <tr><td>01/06/26</td><td>Bubble Tea Taro</td><td><span class="badge blue">Entrada</span></td><td>+15</td><td>5</td><td>20</td><td>Reposición semanal</td></tr>
-            <tr><td>31/05/26</td><td>Bocadito de Brownie</td><td><span class="badge blue">Entrada</span></td><td>+20</td><td>10</td><td>30</td><td>Producción propia</td></tr>
-            <tr><td>30/05/26</td><td>Helado Vainilla</td><td><span class="badge blue">Entrada</span></td><td>+40</td><td>0</td><td>40</td><td>Compra freezer</td></tr>
-            <tr><td>29/05/26</td><td>Raspadilla Fresa</td><td><span class="badge amber">Ajuste</span></td><td>-2</td><td>20</td><td>18</td><td>Merma</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- CLIENTES -->
-    <div class="page" id="p-clientes">
-      <div class="section-title">Clientes</div>
-      <div class="section-sub">CRM · Segmentación automática · 24 clientes registrados</div>
-      <div class="stats-row">
-        <div class="stat-card"><div class="stat-label">Total clientes</div><div class="stat-val">24</div></div>
-        <div class="stat-card copper"><div class="stat-label">VIP</div><div class="stat-val">3</div><div class="stat-sub">+S/150 acumulado</div></div>
-        <div class="stat-card amber"><div class="stat-label">Frecuentes</div><div class="stat-val">8</div><div class="stat-sub">3+ compras</div></div>
-        <div class="stat-card"><div class="stat-label">Nuevos</div><div class="stat-val">6</div><div class="stat-sub">este mes</div></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="crm-card"><div class="crm-avatar">MQ</div><div class="crm-info"><div class="crm-name">María Quispe</div><div class="crm-detail">DNI 45821736 · 18 compras · S/ 312 acumulado</div></div><div class="crm-seg"><span class="badge green">VIP</span></div></div>
-        <div class="crm-card"><div class="crm-avatar">CR</div><div class="crm-info"><div class="crm-name">Carlos Ruiz</div><div class="crm-detail">DNI 72948531 · 14 compras · S/ 198 acumulado</div></div><div class="crm-seg"><span class="badge green">VIP</span></div></div>
-        <div class="crm-card"><div class="crm-avatar">AT</div><div class="crm-info"><div class="crm-name">Ana Torres</div><div class="crm-detail">DNI 61038472 · 11 compras · S/ 154 acumulado</div></div><div class="crm-seg"><span class="badge green">VIP</span></div></div>
-        <div class="crm-card"><div class="crm-avatar">LM</div><div class="crm-info"><div class="crm-name">Luis Mamani</div><div class="crm-detail">DNI 83746291 · 7 compras · S/ 98 acumulado</div></div><div class="crm-seg"><span class="badge amber">Frecuente</span></div></div>
-        <div class="crm-card"><div class="crm-avatar">RF</div><div class="crm-info"><div class="crm-name">Rosa Flores</div><div class="crm-detail">DNI 59012847 · 5 compras · S/ 74 acumulado</div></div><div class="crm-seg"><span class="badge amber">Frecuente</span></div></div>
-        <div class="crm-card"><div class="crm-avatar">PS</div><div class="crm-info"><div class="crm-name">Pedro Salas</div><div class="crm-detail">DNI 40183726 · 4 compras · S/ 62 acumulado</div></div><div class="crm-seg"><span class="badge amber">Frecuente</span></div></div>
-        <div class="crm-card"><div class="crm-avatar">JD</div><div class="crm-info"><div class="crm-name">Jorge Díaz</div><div class="crm-detail">DNI 77291038 · 2 compras · S/ 24 acumulado</div></div><div class="crm-seg"><span class="badge blue">Ocasional</span></div></div>
-        <div class="crm-card"><div class="crm-avatar">LV</div><div class="crm-info"><div class="crm-name">Lucía Vega</div><div class="crm-detail">DNI 38471029 · 1 compra · S/ 14 acumulado</div></div><div class="crm-seg"><span class="badge" style="background:rgba(148,163,184,.1);color:var(--gr)">Nuevo</span></div></div>
-      </div>
-    </div>
-
-    <!-- FINANZAS -->
-    <div class="page" id="p-finanzas">
-      <div class="section-title">Finanzas</div>
-      <div class="section-sub">Resumen financiero · Junio 2026</div>
-      <div class="stats-row">
-        <div class="stat-card green"><div class="stat-label">Ingresos mes</div><div class="stat-val">S/ 1,284</div></div>
-        <div class="stat-card"><div class="stat-label">Costo de ventas</div><div class="stat-val" style="color:var(--red)">S/ 412</div></div>
-        <div class="stat-card copper"><div class="stat-label">Utilidad bruta</div><div class="stat-val">S/ 872</div></div>
-        <div class="stat-card amber"><div class="stat-label">Margen bruto</div><div class="stat-val">68%</div></div>
-      </div>
-      <div class="grid2">
-        <div class="tbl-wrap" style="padding:20px">
-          <div class="tbl-title" style="margin-bottom:16px">Estado de resultados</div>
-          <div class="fin-row"><span class="fin-label">Ventas totales</span><span class="fin-val pos">S/ 1,284</span></div>
-          <div class="fin-row"><span class="fin-label">Costo de productos</span><span class="fin-val neg">-S/ 412</span></div>
-          <div class="fin-row"><span class="fin-label">Utilidad bruta</span><span class="fin-val neu">S/ 872</span></div>
-          <div class="fin-row"><span class="fin-label">Gastos operativos</span><span class="fin-val neg">-S/ 180</span></div>
-          <div class="fin-row"><span class="fin-label" style="font-weight:700;color:var(--ice)">Utilidad neta</span><span class="fin-val pos" style="font-size:18px">S/ 692</span></div>
-        </div>
-        <div class="tbl-wrap" style="padding:20px">
-          <div class="tbl-title" style="margin-bottom:16px">Ventas por categoría</div>
-          <div class="fin-row"><span class="fin-label">🧋 Bubble Tea</span><span class="fin-val">S/ 532 · 41%</span></div>
-          <div class="fin-row"><span class="fin-label">🍧 Cremoladas</span><span class="fin-val">S/ 298 · 23%</span></div>
-          <div class="fin-row"><span class="fin-label">🍦 Helados</span><span class="fin-val">S/ 256 · 20%</span></div>
-          <div class="fin-row"><span class="fin-label">🧊 Raspadillas</span><span class="fin-val">S/ 128 · 10%</span></div>
-          <div class="fin-row"><span class="fin-label">🍫 Bocaditos</span><span class="fin-val">S/ 70 · 5%</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DASHBOARD -->
-    <div class="page" id="p-dashboard">
-      <div class="section-title">Dashboard</div>
-      <div class="section-sub">Vista general del negocio · Frosty Helados</div>
-      <div class="stats-row">
-        <div class="stat-card green"><div class="stat-label">Ventas mes</div><div class="stat-val">S/ 1,284</div><div class="stat-sub">↑ 18% vs mayo</div></div>
-        <div class="stat-card"><div class="stat-label">Transacciones</div><div class="stat-val">128</div><div class="stat-sub">↑ 12 más que mayo</div></div>
-        <div class="stat-card copper"><div class="stat-label">Clientes activos</div><div class="stat-val">24</div><div class="stat-sub">6 nuevos este mes</div></div>
-        <div class="stat-card amber"><div class="stat-label">Producto estrella</div><div class="stat-val" style="font-size:16px">Bubble Tea</div><div class="stat-sub">41% de ventas</div></div>
-      </div>
-      <div class="grid2">
-        <div class="tbl-wrap" style="padding:20px">
-          <div class="tbl-title" style="margin-bottom:16px">Resumen semanal</div>
-          <div class="fin-row"><span class="fin-label">Lunes</span><span class="fin-val">S/ 142</span></div>
-          <div class="fin-row"><span class="fin-label">Martes</span><span class="fin-val">S/ 98</span></div>
-          <div class="fin-row"><span class="fin-label">Miércoles</span><span class="fin-val">S/ 167</span></div>
-          <div class="fin-row"><span class="fin-label">Jueves</span><span class="fin-val">S/ 124</span></div>
-          <div class="fin-row"><span class="fin-label">Viernes</span><span class="fin-val">S/ 198</span></div>
-          <div class="fin-row"><span class="fin-label">Sábado</span><span class="fin-val pos">S/ 312</span></div>
-          <div class="fin-row"><span class="fin-label">Domingo</span><span class="fin-val pos">S/ 243</span></div>
-        </div>
-        <div class="tbl-wrap" style="padding:20px">
-          <div class="tbl-title" style="margin-bottom:16px">Top 5 productos</div>
-          <div class="fin-row"><span class="fin-label">🧋 Bubble Tea Taro</span><span class="fin-val">S/ 196 · 14 vendidos</span></div>
-          <div class="fin-row"><span class="fin-label">🧋 Bubble Tea Matcha</span><span class="fin-val">S/ 180 · 12 vendidos</span></div>
-          <div class="fin-row"><span class="fin-label">🍧 Cremolada Lúcuma</span><span class="fin-val">S/ 162 · 18 vendidos</span></div>
-          <div class="fin-row"><span class="fin-label">☀️ Sundae Caramelo</span><span class="fin-val">S/ 144 · 12 vendidos</span></div>
-          <div class="fin-row"><span class="fin-label">🧊 Raspadilla Fresa</span><span class="fin-val">S/ 115 · 23 vendidos</span></div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /content -->
-</div><!-- /app -->
+  </div>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -392,16 +199,14 @@ const firebaseConfig = {
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const loginScreen = document.getElementById('login-screen');
-const appDiv      = document.getElementById('app');
-
 onAuthStateChanged(auth, user => {
   if(user){
-    loginScreen.classList.add('hidden');
-    appDiv.classList.add('show');
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('app').classList.add('show');
+    sessionStorage.setItem('frosty_desde_portal','1');
   } else {
-    loginScreen.classList.remove('hidden');
-    appDiv.classList.remove('show');
+    document.getElementById('login-screen').classList.remove('hidden');
+    document.getElementById('app').classList.remove('show');
   }
 });
 
@@ -409,23 +214,17 @@ window.doLogin = async function(){
   const email = document.getElementById('l-email').value.trim();
   const pass  = document.getElementById('l-pass').value;
   const err   = document.getElementById('l-err');
-  err.style.display = 'none';
-  try {
-    await signInWithEmailAndPassword(auth, email, pass);
-  } catch(e) {
-    err.style.display = 'block';
-  }
+  err.style.display='none';
+  try{ await signInWithEmailAndPassword(auth,email,pass); }
+  catch(e){ err.style.display='block'; }
 };
 
-window.doLogout = async function(){
-  await signOut(auth);
-};
+window.doLogout = async function(){ await signOut(auth); };
 
-window.showPage = function(id, el){
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
-  document.getElementById('p-'+id).classList.add('on');
-  document.querySelectorAll('.tnav').forEach(t => t.classList.remove('active'));
-  if(el) el.classList.add('active');
+window.openApp = function(app){
+  sessionStorage.setItem('frosty_desde_portal','1');
+  if(app==='vcontrol') window.location.href='vcontrol/';
+  if(app==='vcontent') window.open('https://italoamayamoreno-lgtm.github.io/linkedin-cms','_blank');
 };
 </script>
 </body>
