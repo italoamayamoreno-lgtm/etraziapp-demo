@@ -6,9 +6,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#8B1A3A">
-<title>💎 LaFech</title>
+<title>🧊 Frosty</title>
 <script>
-const md={name:"LaFech",short_name:"LaFech",start_url:".",display:"standalone",background_color:"#FAFAF9",theme_color:"#8B1A3A",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%238B1A3A'/><text x='96' y='130' font-size='100' text-anchor='middle'>💎</text></svg>",sizes:"192x192",type:"image/svg+xml"}]};
+const md={name:"Frosty Helados",short_name:"Frosty Helados",start_url:".",display:"standalone",background_color:"#0B1120",theme_color:"#B87333",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%238B1A3A'/><text x='96' y='130' font-size='100' text-anchor='middle'>💎</text></svg>",sizes:"192x192",type:"image/svg+xml"}]};
 const b=new Blob([JSON.stringify(md)],{type:'application/json'});
 const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(b);document.head.appendChild(l);
 </script>
@@ -422,8 +422,8 @@ body.role-admin .admin-only-block{display:flex !important}
 <div id="login-screen" class="hidden">
   <div class="login-card">
     <div class="login-logo">
-      <div class="login-logo-gem">💎</div>
-      <div class="login-logo-name">LaFech</div>
+      <div class="login-logo-gem">🧊</div>
+      <div class="login-logo-name">Frosty Helados</div>
     </div>
     <div class="login-title">Sistema de Gestión Comercial</div>
     <div class="login-field">
@@ -439,13 +439,13 @@ body.role-admin .admin-only-block{display:flex !important}
     <div style="text-align:center;margin-top:14px">
       <button onclick="doForgotPassword()" style="background:none;border:none;font-family:var(--fb);font-size:12px;color:var(--P);cursor:pointer;text-decoration:underline">¿Olvidaste tu contraseña?</button>
     </div>
-    <div class="login-footer">LaFech © 2026 — Acceso restringido</div>
+    <div class="login-footer">Frosty Helados © 2026 — Acceso restringido</div>
   </div>
 </div>
 
 <!-- LOADING SCREEN — visible mientras Firebase verifica sesión -->
 <div id="loading-screen" style="position:fixed;inset:0;background:var(--bg);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;font-weight:600;color:var(--P);letter-spacing:.04em">💎 LaFech</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;font-weight:600;color:var(--P);letter-spacing:.04em">🧊 Frosty</div>
   <div style="width:32px;height:32px;border:3px solid var(--PL);border-top-color:var(--P);border-radius:50%;animation:spin .8s linear infinite"></div>
   <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
 </div>
@@ -453,7 +453,7 @@ body.role-admin .admin-only-block{display:flex !important}
 <div class="app" style="display:none" id="app-container">
 <div id="offline-bar">Sin conexión — los cambios se sincronizarán al reconectar</div>
 <div class="topbar">
-  <div class="logo" onclick="showPage('catalogo')"><span class="logo-gem">💎</span>LaFech</div>
+  <div class="logo" onclick="showPage('catalogo')"><span class="logo-gem">🧊</span>Frosty</div>
   <nav class="topbar-nav">
     <div class="tnav active" id="tn-catalogo" onclick="showPage('catalogo')">Catálogo</div>
     <div class="tnav" id="tn-movimientos" onclick="showPage('movimientos')">Movimientos <span class="nbadge" id="nb-mov">0</span></div>
@@ -936,11 +936,41 @@ body.role-admin .admin-only-block{display:flex !important}
 // FIREBASE
 // ════════════════════════════════════════════════
 let db=null;
-const LK='lafech_v2';
+const LK='frosty_v1';
 let D={products:[],movements:[]};
 
+
+// ── DATA DEMO FROSTY — se carga si Firebase está vacío ──
+function loadDemoData(){
+  if(D.products.length>0) return;
+  const now=Date.now();
+  D.products=[
+    {id:'FRO-001',name:'Raspadilla de Fresa',cat:'Raspadillas',mat:'Vaso',sub:'Grande',cost:1.5,price:5,stock:18,img:''},
+    {id:'FRO-002',name:'Raspadilla de Maracuyá',cat:'Raspadillas',mat:'Vaso',sub:'Grande',cost:1.5,price:5,stock:12,img:''},
+    {id:'FRO-003',name:'Cremolada de Lúcuma',cat:'Cremoladas',mat:'Copa',sub:'Mediano',cost:3,price:9,stock:20,img:''},
+    {id:'FRO-004',name:'Cremolada de Coco',cat:'Cremoladas',mat:'Copa',sub:'Mediano',cost:3,price:9,stock:3,img:''},
+    {id:'FRO-005',name:'Bubble Tea Taro',cat:'Bubble Tea',mat:'Vaso',sub:'Grande',cost:5,price:14,stock:15,img:''},
+    {id:'FRO-006',name:'Bubble Tea Matcha',cat:'Bubble Tea',mat:'Vaso',sub:'Grande',cost:5.5,price:15,stock:10,img:''},
+    {id:'FRO-007',name:'Bubble Tea Fresa',cat:'Bubble Tea',mat:'Vaso',sub:'Grande',cost:5,price:14,stock:2,img:''},
+    {id:'FRO-008',name:'Bocadito de Brownie',cat:'Bocaditos',mat:'Caja',sub:'Chico',cost:2,price:6,stock:30,img:''},
+    {id:'FRO-009',name:'Bocadito de Oreo',cat:'Bocaditos',mat:'Caja',sub:'Chico',cost:2,price:6,stock:25,img:''},
+    {id:'FRO-010',name:'Helado de Vainilla',cat:'Helados',mat:'Copa',sub:'Chico',cost:1.8,price:5,stock:40,img:''},
+    {id:'FRO-011',name:'Helado de Chocolate',cat:'Helados',mat:'Copa',sub:'Chico',cost:1.8,price:5,stock:4,img:''},
+    {id:'FRO-012',name:'Sundae de Caramelo',cat:'Helados',mat:'Copa',sub:'Grande',cost:4,price:12,stock:8,img:''},
+  ];
+  D.movements=[
+    {id:'m1',type:'entrada',prodId:'FRO-001',prodName:'Raspadilla de Fresa',qty:20,date:new Date(now-86400000*5).toISOString().split('T')[0],note:'Stock inicial',user:'admin'},
+    {id:'m2',type:'entrada',prodId:'FRO-003',prodName:'Cremolada de Lúcuma',qty:20,date:new Date(now-86400000*4).toISOString().split('T')[0],note:'Stock inicial',user:'admin'},
+    {id:'m3',type:'entrada',prodId:'FRO-005',prodName:'Bubble Tea Taro',qty:15,date:new Date(now-86400000*3).toISOString().split('T')[0],note:'Reposición',user:'admin'},
+    {id:'m4',type:'entrada',prodId:'FRO-010',prodName:'Helado de Vainilla',qty:40,date:new Date(now-86400000*2).toISOString().split('T')[0],note:'Compra proveedor',user:'admin'},
+    {id:'m5',type:'ajuste',prodId:'FRO-007',prodName:'Bubble Tea Fresa',qty:-3,date:new Date(now-86400000).toISOString().split('T')[0],note:'Merma',user:'admin'},
+  ];
+  svLocal();
+  renderAll();
+}
+
 function initFB(){
-  const cfg={apiKey:"AIzaSyCgzdYRqFiW33I5YUYhZ4g2CLVWdAVdIv0",authDomain:"eimpact-demo.firebaseapp.com",databaseURL:"https://eimpact-demo-default-rtdb.firebaseio.com",projectId:"eimpact-demo",appId:"1:461580241894:web:8640085a35901bd05e2427"};
+  const cfg={apiKey:"AIzaSyA7O4smNpxXVfOuwvIZKkqGqWyVqdPBY7s",authDomain:"eimpact-demo.firebaseapp.com",databaseURL:"https://eimpact-demo-default-rtdb.firebaseio.com",projectId:"eimpact-demo",storageBucket:"eimpact-demo.firebasestorage.app",messagingSenderId:"727581314463",appId:"1:727581314463:web:ec532a4f845cb6e502c1aa"};
   try{
     if(firebase.apps.length===0)firebase.initializeApp(cfg);
     db=firebase.database();
@@ -986,7 +1016,7 @@ function prevFoto(inp,pvId,btnId){
 }
 function buildCarousel(imgs,containerId){
   const wrap=document.getElementById(containerId);
-  if(!imgs.length){wrap.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;color:var(--tx3)">💎</div>';return;}
+  if(!imgs.length){wrap.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;color:var(--tx3)">🧊</div>';return;}
   const imgTags=imgs.map((src,i)=>`<img src="${src}" alt="" class="${i===0?'active':''}">`).join('');
   const dots=imgs.length>1?`<div class="carousel-dots">${imgs.map((_,i)=>`<button class="carousel-dot${i===0?' on':''}" onclick="carouselGo('${containerId}',${i})"></button>`).join('')}</div>`:'';
   const btns=imgs.length>1?`<button class="carousel-btn prev" onclick="carouselStep('${containerId}',-1)">‹</button><button class="carousel-btn next" onclick="carouselStep('${containerId}',1)">›</button>`:'';
@@ -1565,7 +1595,7 @@ function exportClients(){
   const ws=XLSX.utils.aoa_to_sheet(rows);
   ws['!cols']=[{wch:12},{wch:10},{wch:30},{wch:14},{wch:10},{wch:14},{wch:12},{wch:14},{wch:14},{wch:22},{wch:14},{wch:26},{wch:16},{wch:20}];
   XLSX.utils.book_append_sheet(wb,ws,'Clientes');
-  XLSX.writeFile(wb,'LaFech_Clientes_'+today()+'.xlsx');
+  XLSX.writeFile(wb,'Frosty_Clientes_'+today()+'.xlsx');
 }
 
 function exportXLS(){
@@ -1581,7 +1611,7 @@ function exportXLS(){
   const ws2=XLSX.utils.aoa_to_sheet(mrows);
   ws2['!cols']=[{wch:12},{wch:10},{wch:30},{wch:12},{wch:10},{wch:14},{wch:12},{wch:16},{wch:12},{wch:14},{wch:20},{wch:14},{wch:26},{wch:20}];
   XLSX.utils.book_append_sheet(wb,ws2,'Movimientos');
-  XLSX.writeFile(wb,'LaFech_Inventario_'+today()+'.xlsx');
+  XLSX.writeFile(wb,'Frosty_Inventario_'+today()+'.xlsx');
 }
 
 // FIX 2: exportPDF — convert img URL to base64 before adding to PDF
@@ -1734,7 +1764,7 @@ async function exportPDF(){
       <div class="spine"></div>
       <div class="hdr">
         <div class="hdr-left">
-          <div class="brand">LaFech</div>
+          <div class="brand">Frosty Helados</div>
           <div class="tagline">BELLEZA QUE CONECTA · PERÚ 2026</div>
         </div>
         <div class="hdr-right">
@@ -1951,7 +1981,7 @@ async function exportPDF(){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LaFech · Catálogo ${new Date().getFullYear()}</title>
+<title>Frosty · Catálogo ${new Date().getFullYear()}</title>
 <style>${css}</style>
 </head>
 <body>
@@ -1980,7 +2010,7 @@ ${pagesHTML}
 // ════════════════════════════════════════════════
 // MÉTODOS DE PAGO
 // ════════════════════════════════════════════════
-const PAY_KEY='lafech_pay_data_v2';
+const PAY_KEY='frosty_pay_data_v1';
 let payData=JSON.parse(localStorage.getItem(PAY_KEY)||'{}');
 
 function syncPayToFirebase(){
@@ -2231,7 +2261,7 @@ async function exportPayPDF(){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LaFech · Medios de Pago</title>
+<title>Frosty · Medios de Pago</title>
 <style>${css}</style>
 </head>
 <body>
@@ -2239,7 +2269,7 @@ async function exportPayPDF(){
   <div class="spine"></div>
   <div class="hdr">
     <div>
-      <div class="brand">LaFech</div>
+      <div class="brand">Frosty Helados</div>
       <div class="tagline">Belleza que conecta · Perú 2026</div>
     </div>
     <div class="hdr-right">
@@ -2259,7 +2289,7 @@ async function exportPayPDF(){
     <div class="pay-note-txt">Una vez realizado el pago, envía el comprobante por WhatsApp para confirmar tu pedido. Tu pedido se procesará una vez verificado el depósito.</div>
   </div>
   <div class="ftr">
-    <span>LaFech · Documento de pago</span>
+    <span>Frosty · Documento de pago</span>
     <span>${fecha}</span>
   </div>
 </div>
@@ -2810,10 +2840,7 @@ function lookupClient(docNum){
 let currentUser=null;let currentRole=null;let auth=null;
 
 function initAuth(){
-  if(!sessionStorage.getItem('lafech_desde_portal')){
-    window.location.replace('https://demo.etraziapp.com');
-    return;
-  }
+  /* demo: acceso libre */
   if(!auth)auth=firebase.auth();
   auth.onAuthStateChanged(async user=>{
     if(user){currentUser=user;await loadUserRole(user.uid);showApp();}
@@ -2837,6 +2864,7 @@ async function loadUserRole(uid){
 
 function showApp(){
   document.getElementById('loading-screen').style.display='none';
+  setTimeout(loadDemoData, 500);
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app-container').style.display='flex';
   document.body.classList.remove('role-admin','role-vendedor');document.body.classList.add('role-'+currentRole);
