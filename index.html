@@ -824,7 +824,7 @@ window.goToApp = function(appPath) {
   const activa = CONFIG.apps[appPath];
   if (!activa) { showToast('Esta app no está contratada.', 'error'); return; }
   sessionStorage.setItem('lafech_desde_portal', '1');
-  window.location.href = `/${appPath}/`;
+  sessionStorage.setItem('lafech_desde_portal','1'); sessionStorage.setItem('frosty_desde_portal','1'); window.location.href = `${appPath}/index.html`;
 };
 
 window.toggleSidebar = function() {
