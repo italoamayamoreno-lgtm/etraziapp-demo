@@ -951,6 +951,37 @@ let db=null;
 const LK='vcontrol_v1';
 let D={products:[],movements:[]};
 
+
+// ── DATA DEMO GENÉRICA — carga si Firebase está vacío ──────────────────
+function loadDemoData(){
+  if(D.products.length>0) return;
+  const now=Date.now();
+  D.products=[
+    {id:'PRD-001',name:'Polo Básico Blanco',cat:'Ropa y Calzado',material:'Unidad',tamano:'Talla M',cost:25,price:59,minStock:5,img:''},
+    {id:'PRD-002',name:'Jeans Slim Fit',cat:'Ropa y Calzado',material:'Unidad',tamano:'Talla 32',cost:45,price:120,minStock:3,img:''},
+    {id:'PRD-003',name:'Audífonos Bluetooth',cat:'Electrónica',material:'Unidad',tamano:'Estándar',cost:80,price:199,minStock:2,img:''},
+    {id:'PRD-004',name:'Funda Celular Universal',cat:'Electrónica',material:'Unidad',tamano:'Universal',cost:8,price:25,minStock:10,img:''},
+    {id:'PRD-005',name:'Café Molido Premium',cat:'Alimentos',material:'Bolsa',tamano:'250g',cost:15,price:38,minStock:5,img:''},
+    {id:'PRD-006',name:'Aceite de Oliva Extra Virgen',cat:'Alimentos',material:'Botella',tamano:'500ml',cost:18,price:42,minStock:4,img:''},
+    {id:'PRD-007',name:'Shampoo Argan Oil',cat:'Belleza',material:'Frasco',tamano:'400ml',cost:12,price:32,minStock:3,img:''},
+    {id:'PRD-008',name:'Crema Hidratante',cat:'Belleza',material:'Pote',tamano:'200ml',cost:20,price:55,minStock:5,img:''},
+    {id:'PRD-009',name:'Set Toallas de Baño',cat:'Hogar',material:'Set',tamano:'3 piezas',cost:30,price:75,minStock:3,img:''},
+    {id:'PRD-010',name:'Vela Aromática Lavanda',cat:'Hogar',material:'Unidad',tamano:'200g',cost:10,price:28,minStock:5,img:''},
+    {id:'PRD-011',name:'Agua Mineral',cat:'Bebidas',material:'Botella',tamano:'625ml',cost:1.5,price:4,minStock:12,img:''},
+    {id:'PRD-012',name:'Jugo Natural Naranja',cat:'Bebidas',material:'Botella',tamano:'1L',cost:6,price:16,minStock:6,img:''},
+  ];
+  D.movements=[
+    {id:'m1',type:'entrada',prodId:'PRD-001',qty:20,price:25,resp:'Sistema',obs:'Stock inicial',date:new Date(now-86400000*5).toISOString().split('T')[0]},
+    {id:'m2',type:'entrada',prodId:'PRD-003',qty:15,price:80,resp:'Sistema',obs:'Stock inicial',date:new Date(now-86400000*4).toISOString().split('T')[0]},
+    {id:'m3',type:'salida',prodId:'PRD-001',qty:3,price:59,resp:'Demo',obs:'Venta demo',date:new Date(now-86400000*3).toISOString().split('T')[0],clientName:'Cliente Demo',payMethod:'Yape'},
+    {id:'m4',type:'entrada',prodId:'PRD-005',qty:10,price:15,resp:'Sistema',obs:'Reposición',date:new Date(now-86400000*2).toISOString().split('T')[0]},
+    {id:'m5',type:'salida',prodId:'PRD-003',qty:2,price:199,resp:'Demo',obs:'Venta demo',date:new Date(now-86400000).toISOString().split('T')[0],clientName:'María García',payMethod:'Tarjeta de crédito'},
+  ];
+  svLocal();
+  renderAll();
+}
+// ───────────────────────────────────────────────────────────────────────
+
 function initFB(){
   const cfg={apiKey:"AIzaSyA7O4smNpxXVfOuwvIZKkqGqWyVqdPBY7s",authDomain:"eimpact-demo.firebaseapp.com",databaseURL:"https://eimpact-demo-default-rtdb.firebaseio.com",projectId:"eimpact-demo",appId:"1:461580241894:web:8640085a35901bd05e2427"};
   try{
@@ -2858,7 +2889,7 @@ function showApp(){
   if(roleEl)roleEl.textContent=currentRole==='admin'?'Administrador':'Vendedor';
   if(avatarEl)avatarEl.textContent=currentUser.email[0].toUpperCase();
   if(currentRole==='vendedor'){applyVendedorRestrictions();}else{applyAdminView();}
-  db.ref('products').on('value',s=>{const v=s.val();D.products=v?Object.values(v):[];renderAll();setSy('ok');});
+  db.ref('products').on('value',s=>{const v=s.val();D.products=v?Object.values(v):[];if(!D.products.length)loadDemoData();else renderAll();setSy('ok');});
   db.ref('promos').on('value',s=>{window._promos=s.val()||{};});
   db.ref('movements').on('value',s=>{const v=s.val();D.movements=v?Object.values(v):[];renderAll();});
   db.ref('.info/connected').on('value',s=>{const connected=s.val();const bar=document.getElementById('offline-bar');if(bar)bar.classList.toggle('show',!connected);setSy(connected?'ok':'of');if(connected)loadPayFromFirebase();});
